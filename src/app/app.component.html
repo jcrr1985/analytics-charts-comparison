@@ -1,0 +1,27 @@
+<div class="app-wrapper">
+  <app-chart-selector></app-chart-selector>
+
+  <div [ngSwitch]="selectedLib">
+    <app-chartjs *ngSwitchCase="'chartjs'" [type]="'bar'"></app-chartjs>
+    <app-chartjs *ngSwitchCase="'chartjs'" [type]="'pie'"></app-chartjs>
+    <app-google-charts *ngSwitchCase="'chartjs'"></app-google-charts>
+
+    <app-c3 *ngSwitchCase="'c3'" [type]="'bar'"></app-c3>
+    <app-c3 *ngSwitchCase="'c3'" [type]="'pie'"></app-c3>
+    <app-plotly *ngSwitchCase="'plotly'" [type]="'bar'"></app-plotly>
+    <app-plotly *ngSwitchCase="'plotly'" [type]="'pie'"></app-plotly>
+
+    <app-d3 *ngSwitchCase="'d3'" [type]="'bar'"></app-d3>
+    <app-d3 *ngSwitchCase="'d3'" [type]="'pie'"></app-d3>
+
+    <app-google-charts
+      *ngSwitchCase="'googlecharts'"
+      [type]="'bar'"
+    ></app-google-charts>
+    <app-google-charts
+      *ngSwitchCase="'googlecharts'"
+      [type]="'pie'"
+    ></app-google-charts>
+    <app-3d-bar-chart *ngSwitchCase="'threejs'"></app-3d-bar-chart>
+  </div>
+</div>
