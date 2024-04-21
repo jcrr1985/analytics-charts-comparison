@@ -13,8 +13,8 @@ import { DataService } from 'src/app/services/data/data.service';
   selector: 'app-chartjs',
   template: `
     <div class="canvas-wrapper">
-      <canvas #barChart *ngIf="type === 'bar'"></canvas
-      ><canvas #pieChart *ngIf="type === 'pie'"></canvas>
+      <canvas #barChart></canvas>
+      <canvas #pieChart></canvas>
     </div>
   `,
   styleUrls: ['./chartjs.component.scss'],
@@ -31,24 +31,25 @@ export class ChartjsComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.createChart();
+    this.createChart('bar');
+    this.createChart('pie');
   }
 
-  createChart() {
+  createChart(type: string) {
     const data = this.dataService.getVisitDetails();
     const ctx =
-      this.type === 'bar'
+      type === 'bar'
         ? this.barChart.nativeElement.getContext('2d')
         : this.pieChart.nativeElement.getContext('2d');
 
     if (ctx) {
       new Chart(ctx, {
-        type: this.type === 'bar' ? 'bar' : 'pie',
+        type: type === 'bar' ? 'bar' : 'pie',
         data: {
           labels: data.map((d) => d.country),
           datasets: [
             {
-              ...(this.type === 'bar' ? { label: 'Visits' } : {}),
+              ...(type === 'bar' ? { label: 'Visits' } : {}),
               data: data.map((d) => d.visits),
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

@@ -13,8 +13,8 @@ import * as Plotly from 'plotly.js-dist';
   selector: 'app-plotly',
   template: `
     <div>
-      <div #barChart *ngIf="type === 'bar'"></div>
-      <div #pieChart *ngIf="type === 'pie'"></div>
+      <div #barChart></div>
+      <div #pieChart></div>
     </div>
   `,
   styleUrls: ['./ploty.component.scss'],
@@ -27,13 +27,14 @@ export class PlotlyComponent implements AfterViewInit {
   constructor(private dataService: DataService) {}
 
   ngAfterViewInit() {
-    this.createChart();
+    this.createChart('bar');
+    this.createChart('pie');
   }
 
-  createChart() {
+  createChart(type: string) {
     const data = this.dataService.getVisitDetails();
 
-    if (this.type === 'bar') {
+    if (type === 'bar') {
       const layout = {
         barmode: 'group' as const,
         xaxis: { title: 'Country' },
@@ -48,7 +49,7 @@ export class PlotlyComponent implements AfterViewInit {
       }));
 
       Plotly.newPlot(this.barChart.nativeElement, traces, layout);
-    } else if (this.type === 'pie') {
+    } else if (type === 'pie') {
       const trace = {
         labels: data.map((d) => d.country),
         values: data.map((d) => d.visits),

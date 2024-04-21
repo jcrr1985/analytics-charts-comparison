@@ -14,13 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private chartService: ChartService) {}
 
-  ngOnInit(): void {
-    this.selectedLibSubscription = this.chartService.selectedLibrary$.subscribe(
-      (lib) => {
-        this.selectedLib = lib;
-      }
-    );
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.selectedLibSubscription.unsubscribe();

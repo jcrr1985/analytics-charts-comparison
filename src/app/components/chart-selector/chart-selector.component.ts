@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartService } from './../../services/chart/chart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chart-selector',
@@ -17,14 +17,16 @@ export class ChartSelectorComponent implements OnInit {
   ];
   selectedLibrary!: { label: string; value: string };
 
-  constructor(private chartService: ChartService) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.router.navigate(['chartjs']);
+  }
 
   selectLibrary() {
     if (this.selectedLibrary) {
       console.log('Library selected:', this.selectedLibrary.value);
-      this.chartService.setSelectedLibrary(this.selectedLibrary.value);
+      this.router.navigate([this.selectedLibrary.value]);
     }
   }
 }

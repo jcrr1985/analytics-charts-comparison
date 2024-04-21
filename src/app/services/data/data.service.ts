@@ -9,8 +9,8 @@ export class DataService {
       { country: 'Chile', visits: 2460, averageSessionTime: 700 },
       { country: 'Estados Unidos', visits: 2500, averageSessionTime: 300 },
       { country: 'Colombia', visits: 3800, averageSessionTime: 290 },
-      { country: 'Brasil', visits: 1100, averageSessionTime: 360 },
-      { country: 'Rusia', visits: 460, averageSessionTime: 500 },
+      { country: 'Brasil', visits: 1400, averageSessionTime: 360 },
+      { country: 'Rusia', visits: 960, averageSessionTime: 500 },
     ],
     userDemographics: [
       {

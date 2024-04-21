@@ -12,15 +12,16 @@ export class C3Component implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.createChart();
+    this.createChart('bar');
+    this.createChart('pie');
   }
 
-  createChart() {
+  createChart(type: string) {
     const data = this.dataService.getVisitDetails();
 
-    if (this.type === 'bar') {
+    if (type === 'bar') {
       this.createBarChart(data);
-    } else if (this.type === 'pie') {
+    } else if (type === 'pie') {
       this.createPieChart(data);
     }
   }
@@ -60,7 +61,7 @@ export class C3Component implements OnInit {
     const chartData: [string, number][] = data.map((d) => [
       d.country,
       d.visits,
-    ]); // Datos para las secciones del pastel
+    ]);
     const chart = c3.generate({
       bindto: '#c3-pie',
       data: {

@@ -13,8 +13,8 @@ import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
   selector: 'app-google-charts',
   template: `
     <div class="chart-wrapper">
-      <google-chart *ngIf="type === 'pie'" [data]="pieChartData"></google-chart>
-      <google-chart *ngIf="type === 'bar'" [data]="barChartData"></google-chart>
+      <google-chart [data]="pieChartData"></google-chart>
+      <google-chart [data]="barChartData"></google-chart>
     </div>
   `,
   styleUrls: ['./google-charts.component.scss'],

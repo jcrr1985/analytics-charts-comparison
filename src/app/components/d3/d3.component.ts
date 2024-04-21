@@ -23,8 +23,8 @@ interface VisitData {
         id="tooltip"
         style="position: absolute; opacity: 0; pointer-events: none; transition: opacity 0.3s;"
       ></div>
-      <div #barChart *ngIf="type === 'bar'"></div>
-      <div #pieChart *ngIf="type === 'pie'"></div>
+      <div #barChart></div>
+      <div #pieChart></div>
     </div>
   `,
   styleUrls: ['./d3.component.scss'],
@@ -37,16 +37,17 @@ export class D3Component implements AfterViewInit {
   constructor(private dataService: DataService) {}
 
   ngAfterViewInit() {
-    this.createChart();
+    this.createChart('bar');
+    this.createChart('pie');
   }
-  createChart() {
+  createChart(type: string) {
     const data = this.dataService.getVisitDetails();
     const margin = { top: 20, right: 30, bottom: 40, left: 90 };
     const width = 460 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
     const tooltip = d3.select('#tooltip');
 
-    if (this.type === 'bar') {
+    if (type === 'bar') {
       const svg = d3
         .select(this.barChart.nativeElement)
         .append('svg')
@@ -107,7 +108,7 @@ export class D3Component implements AfterViewInit {
           tooltip.style('opacity', 0);
           d3.select(this).style('fill', '#69b3a2');
         });
-    } else if (this.type === 'pie') {
+    } else if (type === 'pie') {
       const svg = d3
         .select(this.pieChart.nativeElement)
         .append('svg')
